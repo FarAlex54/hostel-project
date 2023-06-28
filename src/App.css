@@ -1,38 +1,47 @@
-.App {
-  text-align: center;
+.cardGrid{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+}
+  /* Для карточки */
+  .cardTitle{
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    opacity: 0.7;
+  }
+.cardButton{
+  box-shadow: 3px 3px 10px black;
+}
+.cardRoom{
+  box-shadow: 3px 3px 10px black;
+  background:rgba(225, 222, 228, 0.514);
+  transition: 0.5s ease-out;
+  margin: 1em;
+  width: calc(100%/3);
+}
+.cardRoom:hover{
+  box-shadow: 3px 3px 20px black;
+  background:rgba(225, 222, 228, 0.514);
+  opacity: 1;
+  bottom: 1px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+/* Стили для карточек */
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@media screen and (min-width: 568px){
+  .cards-wrapper{
+    display: flex;
+    justify-content: center;
+  }
+  .image-wrapper{
+    height: 22vw;
+    margin: 0 auto;
   }
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+@media screen and (max-width: 567px){
+  .card:not(:first-child){
+    display: none;
+    justify-content: center;
   }
 }
+ 
