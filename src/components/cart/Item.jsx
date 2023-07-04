@@ -2,6 +2,12 @@ import React from 'react'
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Carousel from 'react-bootstrap/Carousel';
+import { useState } from 'react';
+import Modal from 'react-bootstrap/Modal';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container';
+import Image from 'react-bootstrap/Image';
 
 
 
@@ -11,9 +17,13 @@ const Item = (props) => {
   "июля", "августа", "сентября", "октября", "ноября", "декабря"];
   const day = `${current.getDate()}`;
   const month = `${monthNames[current.getMonth()]}`;
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
 
   return (
-
+<>
     <Card className='cardRoom' style={{ width: '28rem' }}>
       <Card.Title className='cardTitle'>
         <div class='bg-secondary rounded d-flex justify-content-center'>
@@ -41,16 +51,51 @@ const Item = (props) => {
         </Carousel.Item> 
       </Carousel>
 
-      <Card.Body>
+      <Card.Body onClick={handleShow}>
         <Card.Title>{props.title}</Card.Title>
         <Card.Text class='lh-1'><p class='fs-3 text-danger'>от {props.price} &#8381;</p><p>за 1 ночь {day} {month}</p></Card.Text>
         {/* <Card.Text>{props.description}</Card.Text> */}
+      </Card.Body>
+      <Card.Footer>
         <div className='d-flex justify-content-center'>
           <Button variant="secondary" className='cardButton'>Узнать цену на другие даты</Button>
         </div>
-      </Card.Body>
-    </Card>
+      </Card.Footer>
 
+    </Card>
+    <Modal className='modal-xl' show={show} onHide={handleClose}>
+        <Modal.Header closeButton> <Modal.Title>{props.title}</Modal.Title></Modal.Header>
+        <Modal.Body>
+          <Container fluid='xxl'>
+            <Row className='py-1'>
+              <Col className='px-1'>
+                <Image className='rounded' variant="top" src={props.img1} fluid='true' />
+              </Col>
+              <Col className='px-1'>
+                <Image className='rounded' variant="top" src={props.img2} fluid='true' />
+              </Col>
+              <Col className='px-1'>
+                <Image className='rounded' variant="top" src={props.img3} fluid='true'/>
+              </Col>
+            </Row>
+
+            <Row className='py-1'>
+              <Col className='px-1'>
+                <Image className='rounded' variant="top" src={props.img4} fluid='true'/>
+              </Col>
+              <Col>
+                {props.description}
+              </Col>
+            </Row>
+          </Container>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+</>
   )
 }
 

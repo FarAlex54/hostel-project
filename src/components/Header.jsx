@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -41,36 +40,6 @@ const Header = () => {
         </Navbar.Collapse>
       </Container>
     </Navbar>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-      
 /*       <Navbar bg="dark" variant="dark">
         <Container className='d-flex justify-content-between'>
         <Navbar.Collapse className='d-flex bd-highlight align-items-center text-light'> */
@@ -98,7 +67,6 @@ const Header = () => {
       </Navbar> */
 /*       https://api.openweathermap.org/data/2.5/weather?lat=44.32&lon=38.63&appid=b3d8c91b9ff1342faa98b755a0a48cb5     - API для прогноза погоды
 */
-
   );
 }
 

@@ -6,7 +6,10 @@ import Footer from './components/Footer';
 import Bron from './components/Bron';
 import Prevfooter from './components/Prevfooter';
 import CardItem from './components/cart/CardItem';
+import Info from './components/cart/Info';
 import { useState, useEffect } from 'react';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 import axios from 'axios';
 
 
@@ -15,6 +18,7 @@ import axios from 'axios';
 
 function App() {
   const [rooms, setRooms] = useState([])
+
   useEffect (()=>{
     async function axiosData(){
       const roomsData = await axios.get('https://64775eca9233e82dd53b8a86.mockapi.io/rooms')
@@ -37,3 +41,4 @@ function App() {
 }
 
 export default App;
+
