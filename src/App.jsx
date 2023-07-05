@@ -1,17 +1,12 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/Header';
-import Banner from './components/Banner';
+import Home from './components/Home';
 import Footer from './components/Footer';
-import Bron from './components/Bron';
-import Prevfooter from './components/Prevfooter';
-import CardItem from './components/cart/CardItem';
-import Info from './components/cart/Info';
+import Form from './components/Form';
 import { useState, useEffect } from 'react';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
 import axios from 'axios';
-
+import {Route, Routes, BrowserRouter as Router} from 'react-router-dom';
 
 
 
@@ -28,13 +23,15 @@ function App() {
   },[]);
   return (
     <div>
-       <Header/>
-       <Banner/>
-       <Bron/>
-      <CardItem item={rooms}/>
-      <br/>
-       <Prevfooter />
-      <br/>
+      <Router>
+        <Header/>
+          <Routes>
+ {/*            <Route path='/' element={<Banner/>}/>
+            <Route path='/' element={<Bron/>}/> */}
+            <Route path='/' element={<Home item={rooms}/>}/>
+            <Route path='/form' element={<Form/>}/>
+          </Routes>
+      </Router>
       <Footer/>
     </div>
   );

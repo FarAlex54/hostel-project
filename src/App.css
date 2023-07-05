@@ -25,6 +25,14 @@
   opacity: 1;
   bottom: 1px;
 }
+.aLink{
+  text-decoration: none;
+  color: white;
+}
+.aLink:hover{
+  text-decoration: none;
+  color: white;
+}
 
 /* Стили для карточек */
 

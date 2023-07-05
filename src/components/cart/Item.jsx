@@ -91,7 +91,7 @@ const Item = (props) => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            Закрыть
           </Button>
         </Modal.Footer>
       </Modal>
