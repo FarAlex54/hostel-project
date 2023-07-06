@@ -13,8 +13,7 @@ switchers.forEach(item => {
 	})
 })
   return (
-    <div>
-      <section class="forms-section">
+    <div class="forms-section">
         <div class="forms">
           <div class="form-wrapper is-active">
             <button type="button" class="switcher switcher-login">
@@ -61,7 +60,6 @@ switchers.forEach(item => {
             </form>
           </div>
         </div>
-      </section>
     </div>
   )
 }
