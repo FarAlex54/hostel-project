@@ -2,6 +2,7 @@ import './styles/Prevfooter.css';
 import React from 'react'
 import 'leaflet/dist/leaflet.css';
 import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
+import {Link} from 'react-router-dom';
 
 const Prevfooter = () => {
   return (
@@ -10,13 +11,13 @@ const Prevfooter = () => {
        <div className='col-6 d-flex flex-row bg-light rounded justify-content-between'>
          <div className='p-4'>
           <h3>МЕНЮ</h3>
-          <a class="text-decoration-none" href='#'><p class="text-danger">Об отеле</p></a>
+          <Link className='aLink' to={'/about'}><p class="text-danger">Об отеле</p></Link>
           <a class="text-decoration-none" href='#'><p class="text-danger">Номера</p></a>
-          <a class="text-decoration-none" href='#'><p class="text-danger">Ресторан</p></a>
+          <Link className='aLink' to={'/restoran'}><p class="text-danger">Ресторан</p></Link>
           <a class="text-decoration-none" href='#'><p class="text-danger">Услуги</p></a>
           <a class="text-decoration-none" href='#'><p class="text-danger">Мероприятия</p></a>
-          <a class="text-decoration-none" href='#'><p class="text-danger">Фотогалерея</p></a>
-          <a class="text-decoration-none" href='#'><p class="text-danger">Контакты</p></a>
+          <Link className='aLink' to={'/gallery'}><p class="text-danger">Фотогалерея</p></Link>
+          <Link className='aLink' to={'/contacts'}><p class="text-danger">Контакты</p></Link>
         </div>
         <div className='p-4' id='contact'>
           <h3>КОНТАКТЫ</h3>

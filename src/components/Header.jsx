@@ -2,8 +2,10 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import Button from "react-bootstrap/Button";
 import { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
+import "bootstrap-icons/font/bootstrap-icons.css";
 import '../App.css';
 
 const Header = () => { 
@@ -27,16 +29,23 @@ const Header = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link><Link className='aLink' to={'/'}>Об отеле</Link></Nav.Link>
-            <Nav.Link className='aLink' href="#contact">Контакты</Nav.Link>
-            <Nav.Link><Link className='aLink' to={'/'}>Фотогалерея</Link></Nav.Link>
-            <Nav.Link><Link className='aLink' exact to={'/form'}>Отзывы</Link></Nav.Link>
+            <Nav.Link><Link className='aLink' to={'/about'}>Об отеле</Link></Nav.Link>
+            <Nav.Link><Link className='aLink' to={'/contacts'}>Контакты</Link></Nav.Link>
+            <Nav.Link><Link className='aLink' to={'/gallery'}>Фотогалерея</Link></Nav.Link>
+            <Nav.Link><Link className='aLink' exact to={'/feedback'}>Отзывы</Link></Nav.Link>
           </Nav>
           <Nav class='small text-light text-end justify-content-end'>
             <Nav.Link href="#position">Краснодарский край, село Бжид, ул.Лазурная, 10</Nav.Link>
           </Nav>
-          <Navbar.Text className="p-4">Что-то еще</Navbar.Text>
-          
+          <Nav class='small text-light text-end justify-content-end p-4'>
+          <Nav.Link>
+            <Link className='aLink' exact to={'/form'}>
+              <Button className='cardButton' variant="primary" data-bs-toggle="tooltip" data-bs-placement="right" title="Личный кабинет">
+                <i class="bi bi-person-fill"></i>
+              </Button>
+            </Link>
+            </Nav.Link>
+          </Nav>   
         </Navbar.Collapse>
       </Container>
     </Navbar>

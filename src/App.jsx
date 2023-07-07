@@ -7,7 +7,11 @@ import Form from './components/Form';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import {Route, Routes, BrowserRouter as Router} from 'react-router-dom';
-
+import Gallery from './components/Gallery';
+import About from './components/About';
+import Feedback from './components/Feedback';
+import Contacts from './components/Contacts';
+import Restoran from './components/Restoran';
 
 
 
@@ -26,10 +30,13 @@ function App() {
       <Router>
         <Header/>
           <Routes>
- {/*            <Route path='/' element={<Banner/>}/>
-            <Route path='/' element={<Bron/>}/> */}
             <Route path='/' element={<Home item={rooms}/>}/>
             <Route path='/form' element={<Form/>}/>
+            <Route path='/about' element={<About/>}/>
+            <Route path='/feedback' element={<Feedback/>}/>
+            <Route path='/gallery' element={<Gallery/>}/>
+            <Route path='/contacts' element={<Contacts/>}/>
+            <Route path='/restoran' element={<Restoran/>}/>
           </Routes>
       </Router>
       <Footer/>

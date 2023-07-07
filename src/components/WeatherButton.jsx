@@ -21,10 +21,9 @@ function WeatherButton() {
  
       <Offcanvas show={show} onHide={handleClose} scroll={true} backdrop={false}>
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Текущая погода с прогнозом</Offcanvas.Title>
+          <Offcanvas.Title />
         </Offcanvas.Header>
         <Offcanvas.Body>
-          Болки с прогнозом погоды
           <WeekContainer/>
         </Offcanvas.Body>
       </Offcanvas>

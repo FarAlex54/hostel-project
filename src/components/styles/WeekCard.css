@@ -1,7 +1,7 @@
 .cardWeek {
   box-shadow: 3px 3px 10px black;
   width: 20rem;
-  background-color:rgba(225, 222, 228, 1);
+  background: linear-gradient(rgb(131, 131, 231), rgb(224, 191, 197));
   padding: 2rem 0;
   margin-bottom: 1rem;
   margin-top: 1rem;
