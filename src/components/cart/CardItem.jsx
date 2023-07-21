@@ -1,7 +1,7 @@
 
 
 import React from 'react'
-import Item from './Item'
+import Item from './cardsForm/Item'
 
 const CardItem = (props) => {
   return (

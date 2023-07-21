@@ -13,8 +13,7 @@ import Image from 'react-bootstrap/Image';
 
 const Item = (props) => {
   const current = new Date();
-  const monthNames = ["января", "февраля", "марта", "апреля", "мая", "июня",
-  "июля", "августа", "сентября", "октября", "ноября", "декабря"];
+  const monthNames = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
   const day = `${current.getDate()}`;
   const month = `${monthNames[current.getMonth()]}`;
   const [show, setShow] = useState(false);
@@ -61,7 +60,6 @@ const Item = (props) => {
           <Button variant="secondary" className='cardButton'>Узнать цену на другие даты</Button>
         </div>
       </Card.Footer>
-
     </Card>
     <Modal className='modal-xl' show={show} onHide={handleClose}>
         <Modal.Header closeButton> <Modal.Title>{props.title}</Modal.Title></Modal.Header>
@@ -90,6 +88,9 @@ const Item = (props) => {
           </Container>
         </Modal.Body>
         <Modal.Footer>
+        <Button variant="secondary">
+            Бронировать
+          </Button>
           <Button variant="secondary" onClick={handleClose}>
             Закрыть
           </Button>

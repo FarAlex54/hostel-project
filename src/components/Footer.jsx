@@ -6,7 +6,7 @@ import Container from 'react-bootstrap/Container';
 
 const Footer = () => {
   return (
-    <div>
+    <div className='box'>
       <footer className='md-3 border-top'>
         <div class="d-flex justify-content-between bd-highlight text-secondary text-muted">
           <div class="p-2 bd-highlight">©2023 – НАО «Клуб путешественников» – Официальный сайт Отеля Клуб путешественников</div>
