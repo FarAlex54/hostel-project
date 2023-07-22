@@ -1,0 +1,18 @@
+/* Стили для звездного рейтинга */
+input[type="radio"]{
+  display:none;
+}
+
+.star {
+ size: 100pt;
+ font-size: 1.5rem;
+}
+
+.feedbackIcon_plus{
+  font-size: 1rem;
+  color: green;
+}
+.feedbackIcon_minus{
+  font-size: 1rem;
+  color: red;
+}
