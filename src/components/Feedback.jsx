@@ -3,27 +3,44 @@ import './styles/Feedback.css';
 import FeedBackItem from './cart/FeedBackItem';
 import { useForm } from "react-hook-form"
 import DtPicker from 'react-calendar-datetime-picker'
-import { useState } from 'react';
-
+import { useState, useRef } from 'react';
+import { AppContext } from '../App';
+import axios from 'axios';
 
 
 
 const Feedback = (props) => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm()
+  
+  const context = React.createContext(AppContext)
+
  
+
+  const onSubmit = data => console.log(data)
   const [dateVisit,setDateVisit] = useState(null);
-  const onSubmit = (data) => console.log(data)
-  console.log(watch("example"))
-
-
-  const [rating,setRating] = useState(null);
+  const [rating,setRating] = useState(0);
   const [hover,setHover] = useState(null);
+  const [plus,setPlus] = useState('');
+  const [minus,setMinus] = useState('');
+  const [name,setName] = useState('Модуляр');
+  function handleSubmit(e){
+    e.preventDefault()  // без перезагрузки страницы
+    if (plus===''){
+      console.log('Plus is null')
 
+    }
+    else{
+      console.log('Plus is NOT null')
+      /* axios.post('https://64775eca9233e82dd53b8a86.mockapi.io/feedback', {
+        name:name,
+        plus:plus,
+        minus:minus,
+        rating:rating,
+        living_date:dateVisit.day+'/'+dateVisit.month+'/'+dateVisit.year
+      }) */
+    }
+    setPlus(''); setMinus(''); setRating(''); setDateVisit(null);
+  }
+  
 
 
    return (
@@ -36,18 +53,22 @@ const Feedback = (props) => {
                                /> 
         </div>
         <div class="p-2 col-4">
-          <form class="rounded p-2" id='feedbackForm' onSubmit={handleSubmit(onSubmit)}>
+          <form class="rounded p-2" id='feedbackForm' onSubmit={handleSubmit}>
             <h5 class=''>Оставте Ваш отзыв</h5>
                 <div class="form-floating">
-                  <textarea class="form-control" style={{height: 15 +'em'}} id="floatingTextarea" ></textarea>
-                  <label for="floatingTextarea">Ваш отзыв</label>
+                  <textarea class="form-control" style={{height: 15 +'em'}} id="Plus" value={plus} onChange={(e) => {setPlus(e.target.value)}}></textarea>
+                  <label for="Plus">Что понравилось?</label>
+                </div>
+                <div class="form-floating py-2">
+                  <textarea class="form-control" style={{height: 10 +'em'}} id="Minus" value={minus} onChange={(e) => {setMinus(e.target.value)}}></textarea>
+                  <label for="Minus">Что не понравилось?</label>
                 </div>
                 <div>
                   <p class='px-2'>Оценка:
                     {[...Array(5)].map((star, i)=>{
                       const ratingValue = i + 1;
                       const container ={
-                        color: (ratingValue <= (hover || rating) ? '#ffc107' : '#e4e5e9'),             
+                        color: (ratingValue <= (hover || rating) ? '#ffc107' : '#e4e5e9')             
                       }
                       return <label>
                               <input 
@@ -64,12 +85,11 @@ const Feedback = (props) => {
                             </label>
                     })}
                   </p>
-                  <p>{rating}</p> 
                 </div>              
                 <DtPicker placeholder='Дата заезда' className='calendar' onChange={setDateVisit} showWeekend/>
-                <p>{}</p> 
-            <input type="submit" />
-            
+            <input type="submit"/>
+
+                        
           </form>
         </div>  
       </div>
