@@ -10,7 +10,7 @@ const Banner = () => {
     <div className="mainBanner"> 
       <div className='videoWrap'>
         <div className='mainBanner_container'>
-          <img class="img_b" src="./img/logo1.png" width='auto' height='50%' alt="" />
+          <img className="img_b" src="./img/logo1.png" width='auto' height='50%' alt="" />
            <WeatherButton/>
           <div className="mainBanner_img"></div>       
         </div>

@@ -28,41 +28,41 @@ const Feedback = (props) => {
 
   function handleSubmit(e){
     e.preventDefault()  // без перезагрузки страницы
-       axios.post('https://64775eca9233e82dd53b8a86.mockapi.io/feedback', {
+/*        axios.post('https://64775eca9233e82dd53b8a86.mockapi.io/feedback', {
         name:name,
         plus:plus,
         minus:minus,
         rating:rating,
         living_date:dateVisit.day+'/'+dateVisit.month+'/'+dateVisit.year
-      })
+      }) */
       setPlus(''); setMinus(''); setRating(0); setDateVisit(null);setIsReadOnly(true);setShowModal(true);
 
   }
 
    return (
 
-      <div class="d-flex flex-row">
-        <div class="p-2 col-1"></div>  
-        <div class="p-2 col-7"><FeedBackItem feedback={props.feedback}
+      <div className="d-flex flex-row">
+        <div className="p-2 col-1"></div>  
+        <div className="p-2 col-7"><FeedBackItem feedback={props.feedback}
                                              setFeedback={props.setFeedback}
                                              addFeedback={props.addFeedback}
                                /> 
         </div>
-        <div class="p-2 col-4">
-          <form class="rounded p-2" id='feedbackForm' onChange={()=>{(timelessVar&&plus.length) > 0 ? setIsReadOnly(false) : setIsReadOnly(true)}} onSubmit={handleSubmit}>
-            <h5 class=''>Оставте Ваш отзыв</h5>
-                <div class="form-floating">
-                   <textarea class="form-control" style={{height: 15 +'em'}} id="Plus" value={plus} onChange={(e) => {setPlus(e.target.value)}}></textarea>
-                  <label for="Plus">Что понравилось?</label>
+        <div className="p-2 col-4">
+          <form className="rounded p-2" id='feedbackForm' onChange={()=>{(timelessVar&&plus.length) > 0 ? setIsReadOnly(false) : setIsReadOnly(true)}} onSubmit={handleSubmit}>
+            <h5 className=''>Оставте Ваш отзыв</h5>
+                <div className="form-floating">
+                   <textarea className="form-control" style={{height: 15 +'em'}} id="Plus" value={plus} onChange={(e) => {setPlus(e.target.value)}}></textarea>
+                  <label htmlFor="Plus">Что понравилось?</label>
                 </div>
-                <div class="form-floating py-2">
-                  <textarea class="form-control" style={{height: 10 +'em'}} id="Minus" value={minus} onChange={(e) => {setMinus(e.target.value)}}></textarea>
+                <div className="form-floating py-2">
+                  <textarea className="form-control" style={{height: 10 +'em'}} id="Minus" value={minus} onChange={(e) => {setMinus(e.target.value)}}></textarea>
 
-                  <label for="Minus">Что не понравилось?</label>
+                  <label htmlFor="Minus">Что не понравилось?</label>
                 </div>
-                <div class='d-flex flex-row justify-content-between align-items-center'>
+                <div className='d-flex flex-row justify-content-between align-items-center'>
                   <div>
-                    <p class='px-2' >Оценка: 
+                    <p className='px-2' >Оценка: 
                       {[...Array(5)].map((star, i)=>{
                         const ratingValue = i + 1;
                         const container ={
@@ -76,7 +76,7 @@ const Feedback = (props) => {
                                   onClick={()=>{timelessVar=ratingValue;setRating(ratingValue)}}
                                 />
   
-                                <i class="bi-star-fill star"
+                                <i className="bi-star-fill star"
                                   style={container}
                                   onMouseEnter={()=>setHover(ratingValue)}
                                   onMouseLeave={()=>setHover(null)}
@@ -90,7 +90,7 @@ const Feedback = (props) => {
                   </div>
                 </div>
 
-                  <input type="submit" class='btn btn-info' disabled={isReadOnly}/>
+                  <input type="submit" className='btn btn-info' disabled={isReadOnly}/>
 
 
           </form>
