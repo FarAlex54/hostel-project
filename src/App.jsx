@@ -13,6 +13,7 @@ import About from './components/About';
 import Feedback from './components/Feedback';
 import Contacts from './components/Contacts';
 import Restoran from './components/Restoran';
+import AdminForm from './components/AdminForm';
 
 
 
@@ -62,9 +63,10 @@ function App() {
               <Route path='/gallery' element={<Gallery/>}/>
               <Route path='/contacts' element={<Contacts/>}/>
               <Route path='/restoran' element={<Restoran/>}/>
+              <Route path='/admin' element={<AdminForm/>}/>
             </Routes>
+          <Footer/>
         </Router>
-        <Footer/>
       </div>
     </AppContext.Provider>
 

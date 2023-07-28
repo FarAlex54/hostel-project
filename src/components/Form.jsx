@@ -1,49 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './styles/Form.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import AdminForm from './AdminForm';
+import {useNavigate} from 'react-router-dom';
 
 const Form = () => {
-  /* const switchers = [...document.querySelectorAll('.switcher')] */
-
+  const [login, setLogin] = useState('');
+  const [pass, setPass] = useState('');
+  const navigate = useNavigate(); 
 
   function handleClick(e){
-
+    e.preventDefault();
     const switchers = [...document.getElementsByClassName('switcher')]
-    console.log(switchers); 
-
     switchers.forEach(item => {
-      console.log('отработал цикл switchers.forEach');
       item.addEventListener('click', function() {
-        console.log('кликнули на нужном элеменете и включился метод item.addEventListener');
         switchers.forEach(item => item.parentElement.classList.remove('is-active'))
         this.parentElement.classList.add('is-active');
-        console.log('Произошло событие')
       })
     })
   }
-/* function handleClick(e){
-  console.log('Вызвана функция')
-  switchers.forEach(item => {
-    console.log('отработал цикл switchers.forEach');
-    item.addEventListener('click', function() {
-      console.log('кликнули на нужном элеменете и включился метод item.addEventListener');
-      switchers.forEach(item => item.parentElement.classList.remove('is-active'))
-      this.parentElement.classList.add('is-active');
-      console.log('Произошло событие')
-    })
-  })
+  function CheckLogin(e){
+    e.preventDefault();
+    setLogin(document.getElementById('login-email').value);
+    setPass(document.getElementById('login-password').value);
+  }
 
-} */
-  
-
-/* switchers.forEach(item => {
-	item.addEventListener('click', function() {
-		switchers.forEach(item => item.parentElement.classList.remove('is-active'))
-		this.parentElement.classList.add('is-active');
-    console.log('Произошло событие')
-	})
-}) */
   return (
     <div className="forms-section">
         <div className="forms">
@@ -52,7 +33,7 @@ const Form = () => {
               <p className='text-dark'>Личный кабинет</p>
               <span className="underline"></span>
             </button>
-            <form className="form form-login">
+            <form className="form form-login" onChange={CheckLogin} onSubmit={(e)=>{e.preventDefault();(login&&pass) === 'admin' ? navigate("/admin")  : console.log('данные НЕЕЕЕ совпадают с админскими')}}>
               <fieldset>
                 <legend>Please, enter your email and password for login.</legend>
                 <div className="input-block">

@@ -32,6 +32,7 @@ const Header = () => {
             <Nav.Link><Link className='aLink' to={'/about'}>Об отеле</Link></Nav.Link>
             <Nav.Link><Link className='aLink' to={'/contacts'}>Контакты</Link></Nav.Link>
             <Nav.Link><Link className='aLink' to={'/gallery'}>Фотогалерея</Link></Nav.Link>
+            <Nav.Link><Link className='aLink' to={'/restoran'}>Ресторан</Link></Nav.Link>
             <Nav.Link><Link className='aLink' exact to={'/feedback'}>Отзывы</Link></Nav.Link>
           </Nav>
           <Nav class='small text-light text-end justify-content-end'>
