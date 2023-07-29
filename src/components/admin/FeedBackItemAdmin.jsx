@@ -1,8 +1,8 @@
 import React from 'react'
-import FeedbackCard from './cardsForm/FeedbackCard';
+import FeedbackCardAdmin from './FeedbackCardAdmin';
 import axios from 'axios';
 
-const FeedBackItem = (props) => {
+const FeedBackItemAdmin = (props) => {
 
   const onAddFeedback = async (obj)=>{
     try{
@@ -20,7 +20,7 @@ const FeedBackItem = (props) => {
           {
             props.feedback.map(obj=>{
               return(
-                <FeedbackCard
+                <FeedbackCardAdmin
                 key={obj.id}
                 id={obj.id}
                 myId={obj.myId}
@@ -29,12 +29,6 @@ const FeedBackItem = (props) => {
                 minus={obj.minus}
                 rating={obj.rating}
                 moderator={obj.moderator}
-                
-                feedBackBtn={
-                  (feedbackObj)=>{
-                    onAddFeedback(feedbackObj)
-                  }
-                }
                 />
               )
             })
@@ -43,4 +37,4 @@ const FeedBackItem = (props) => {
   )
 }
 
-export default FeedBackItem
+export default FeedBackItemAdmin

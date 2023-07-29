@@ -32,18 +32,13 @@ function App() {
     axiosData();
   },[]);
 
-  const addFeedback=()=>{
-    axios.put('https://64775eca9233e82dd53b8a86.mockapi.io/feedback')
-  }
-
   return (
     <AppContext.Provider
     value={
       { rooms,
         setRooms,
         feedback,
-        setFeedback,
-        addFeedback
+        setFeedback
       }
     }>
       <div>
@@ -57,13 +52,16 @@ function App() {
                                                 <Feedback 
                                                   feedback={feedback}
                                                   setFeedback={setFeedback}
-                                                  addFeedback={addFeedback}
                                                 />
                                               }/>
               <Route path='/gallery' element={<Gallery/>}/>
               <Route path='/contacts' element={<Contacts/>}/>
               <Route path='/restoran' element={<Restoran/>}/>
-              <Route path='/admin' element={<AdminForm/>}/>
+              <Route path='/admin' element={<AdminForm
+                                                  feedback={feedback}
+                                                  setFeedback={setFeedback}
+                                                />
+                                              }/>
             </Routes>
           <Footer/>
         </Router>

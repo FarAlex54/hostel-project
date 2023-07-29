@@ -4,6 +4,7 @@ import 'leaflet/dist/leaflet.css';
 import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
 import {Link} from 'react-router-dom';
 
+
 const Prevfooter = () => {
   return (
     <div className='row'>
@@ -43,7 +44,6 @@ const Prevfooter = () => {
       <div className='col-4'>
       </div>
     </div>
-  
   )
 }
 

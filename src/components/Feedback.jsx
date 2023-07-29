@@ -28,13 +28,14 @@ const Feedback = (props) => {
 
   function handleSubmit(e){
     e.preventDefault()  // без перезагрузки страницы
-/*        axios.post('https://64775eca9233e82dd53b8a86.mockapi.io/feedback', {
+       axios.post('https://64775eca9233e82dd53b8a86.mockapi.io/feedback', {
         name:name,
         plus:plus,
         minus:minus,
         rating:rating,
-        living_date:dateVisit.day+'/'+dateVisit.month+'/'+dateVisit.year
-      }) */
+        living_date:dateVisit.day+'/'+dateVisit.month+'/'+dateVisit.year,
+        moderator: "off"
+      })
       setPlus(''); setMinus(''); setRating(0); setDateVisit(null);setIsReadOnly(true);setShowModal(true);
 
   }

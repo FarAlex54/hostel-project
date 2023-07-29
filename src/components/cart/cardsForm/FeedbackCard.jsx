@@ -8,8 +8,9 @@ const FeedbackCard = (props) => {
           <Card>
             <Card.Body>
             <p class="fs-5 px-3">{props.name}</p>
-              <i class="bi bi-plus-circle-fill feedbackIcon_plus"></i> {props.plus}<br/> 
-              <i class="bi bi-dash-circle-fill feedbackIcon_minus"></i> {props.minus}
+            <p className="small"><i class="bi bi-plus-circle-fill feedbackIcon_plus"></i> {props.plus}</p><br/> 
+            <p className="small"><i class="bi bi-dash-circle-fill feedbackIcon_minus"></i> {props.minus}</p>
+            <p>{(props.moderator === 'on') ? 'проверка пройдена' : 'не проверяли'}</p>
             </Card.Body>
             <Card.Footer>
                     {[...Array(5)].map((star,i)=>{
