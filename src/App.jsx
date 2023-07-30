@@ -32,13 +32,23 @@ function App() {
     axiosData();
   },[]);
 
+  const deleteFeedBackPost=(id)=>{
+    axios.delete(`https://64775eca9233e82dd53b8a86.mockapi.io/feedback/${id}`);
+    setFeedback((postDelete)=>postDelete.filter(post=>post.id !==id))
+  }
+  const isAdded=(myId)=>{
+    return feedback.some((objIsAdded)=>objIsAdded.myId === myId)
+  }
+
   return (
     <AppContext.Provider
     value={
       { rooms,
         setRooms,
         feedback,
-        setFeedback
+        setFeedback,
+        deleteFeedBackPost,
+        isAdded
       }
     }>
       <div>
@@ -60,6 +70,7 @@ function App() {
               <Route path='/admin' element={<AdminForm
                                                   feedback={feedback}
                                                   setFeedback={setFeedback}
+                                                  /* deleteFeedBackPost={deleteFeedBackPost} */
                                                 />
                                               }/>
             </Routes>

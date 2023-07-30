@@ -1,30 +1,44 @@
 import React from 'react'
-import { useState, useEffect } from 'react';
-import FeedBackItemAdmin from './admin/FeedBackItemAdmin';
+import { AppContext } from '../App';
+import FeedbackCardAdmin from './admin/FeedbackCardAdmin';
 import axios from 'axios';
 
-const AdminForm = (props) => {
-  const [feedback, setFeedback] = useState([])
 
-  useEffect (()=>{
-    async function axiosData(){
-      const feedbackData = await axios.get('https://64775eca9233e82dd53b8a86.mockapi.io/feedback');
-      setFeedback(feedbackData.data)
-    }
-    axiosData();
-  },[]);
+const AdminForm = (props) => {
+  const AdminContext = React.createContext(AppContext)
+  const onDeletePost = (id)=>{
+    axios.delete(`https://64775eca9233e82dd53b8a86.mockapi.io/feedback/${id}`);
+    props.setFeedback((feed)=>feed.filter(item=>item.id !== id));
+    console.log('запись удалена');
+  }
+  const onModering = (id) =>{
+    /* axios.post(`https://64775eca9233e82dd53b8a86.mockapi.io/feedback/${id}`); */
+    /* props.setFeedback((feed)=>console.log('запись   ')); */
+    /* console.log('запись разрешена  '+ props.setFeedback((feed)=>feed.filter(item=>item.id !== id))); */
+  }
   return (
     <div className="d-flex flex-row">
       <div className="p-2 col-3 bg-primary">
         <h6 className="text-center">Блок с отзывами</h6>
         <div className="d-flex flex-row justify-content-between">
-          <div className="p-2 col-10 bg-light"><FeedBackItemAdmin feedback={props.feedback}
-                                             setFeedback={props.setFeedback}
-                                             addFeedback={props.addFeedback}/>
-          </div>
-          <div className="p-2 col-1 bg-light align-self-center">
-            <i class="bi bi-plus-circle-fill feedbackIcon_plus"></i>
-            <i class="bi bi-dash-circle-fill feedbackIcon_minus"></i>
+          <div className="p-2 col-12 bg-light">{props.feedback.map(obj=>{
+                                                  return(
+                                              <FeedbackCardAdmin
+                                              key={obj.id}
+                                              id={obj.id}
+                                              myId={obj.myId}
+                                              name={obj.name}
+                                              plus={obj.plus}
+                                              minus={obj.minus}
+                                              description={obj.description}
+                                              living_date={obj.living_date}
+                                              rating={obj.rating}
+                                              moderator={obj.moderator}
+                                              onDeletePost={(id)=>{onDeletePost(id)}}
+                                              onModering={(id)=>{onModering(id)}}
+                                              />
+                                                  )
+                                              })}
           </div>
         </div>
       </div>  
@@ -55,8 +69,7 @@ const AdminForm = (props) => {
         </div>
       </div>
     </div>
-
-  )
+  );
 }
 
 export default AdminForm
