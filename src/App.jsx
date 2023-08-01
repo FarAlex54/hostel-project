@@ -19,6 +19,7 @@ import AdminForm from './components/AdminForm';
 
 export const AppContext = React.createContext({});
 
+
 function App() {
   const [rooms, setRooms] = useState([])
   const [feedback, setFeedback] = useState([])
@@ -32,12 +33,19 @@ function App() {
     axiosData();
   },[]);
 
-  const deleteFeedBackPost=(id)=>{
+  let myId=0;
+  feedback.map((item) => {if (item.id>myId) {myId=item.id}});
+
+  const editPost=(id)=>{
     axios.delete(`https://64775eca9233e82dd53b8a86.mockapi.io/feedback/${id}`);
-    setFeedback((postDelete)=>postDelete.filter(post=>post.id !==id))
-  }
-  const isAdded=(myId)=>{
-    return feedback.some((objIsAdded)=>objIsAdded.myId === myId)
+    
+    /* setFeedback((feed)=>feed.filter(item=>item.id !== id)); */
+    
+    feedback.map((item) => {if (item.id===id) {
+      item.moderator='on';
+      axios.post('https://64775eca9233e82dd53b8a86.mockapi.io/feedback', item);
+      }})
+    setFeedback(feedback); 
   }
 
   return (
@@ -47,8 +55,7 @@ function App() {
         setRooms,
         feedback,
         setFeedback,
-        deleteFeedBackPost,
-        isAdded
+        editPost
       }
     }>
       <div>
@@ -62,6 +69,7 @@ function App() {
                                                 <Feedback 
                                                   feedback={feedback}
                                                   setFeedback={setFeedback}
+                                                  myId={myId}
                                                 />
                                               }/>
               <Route path='/gallery' element={<Gallery/>}/>
@@ -70,7 +78,7 @@ function App() {
               <Route path='/admin' element={<AdminForm
                                                   feedback={feedback}
                                                   setFeedback={setFeedback}
-                                                  /* deleteFeedBackPost={deleteFeedBackPost} */
+                                                  editPost={(id)=>{editPost(id)}}
                                                 />
                                               }/>
             </Routes>

@@ -1,21 +1,18 @@
 import React from 'react'
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/esm/Button';
+import { useState } from 'react';
 
 
 
 
 const FeedbackCardAdmin = (props) => {
-  const containerAdd = {visibility: (props.moderator === 'off' ? 'visible' : 'hidden' )}
-  const onDelete=()=>{
-    props.onDeletePost(props.id);
-    console.log('удаляем запись ' + props.id);
-  }
-  const onChange=()=>{
-    /* props.moderator='on'; */
-    props.onModering(props.moderator);
-/*     props.setFeedback(prevState => ({moderator:'on'})); */
-    console.log('меняем запись ' + props.id+' moderator: '+props.moderator);
+  const [off,setOff] = useState(false);
+  let containerAdd = {visibility: (props.moderator === 'off' ? 'visible' : 'hidden' )}
+  const onDelete=()=>{props.onDeletePost(props.id);}
+  const onChangeModer=()=>{
+    props.onModering(props.id);
+    setOff(true)
   }
   return (
     <div class="py-2">
@@ -40,9 +37,8 @@ const FeedbackCardAdmin = (props) => {
                 </div>  
                 <div className='p-1 col-4'>
                   <div className="d-flex flex-row justify-content-between align-items-center">
-
-                      <div className='p-1' style={containerAdd}>
-                        <Button variant="outline-success" size="sm" onClick={onChange}><i className="bi bi-cart-check-fill adminFeedbackIcon_add" ></i>
+                      <div className='p-1'>
+                        <Button variant="outline-success" size="sm" onClick={onChangeModer} style={containerAdd} disabled={off}><i className="bi bi-cart-check-fill adminFeedbackIcon_add" ></i>
                         </Button>
                       </div>
                       <div className='p-1' >

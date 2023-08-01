@@ -5,18 +5,18 @@ import axios from 'axios';
 
 
 const AdminForm = (props) => {
-  const AdminContext = React.createContext(AppContext)
+
   const onDeletePost = (id)=>{
     axios.delete(`https://64775eca9233e82dd53b8a86.mockapi.io/feedback/${id}`);
     props.setFeedback((feed)=>feed.filter(item=>item.id !== id));
     console.log('запись удалена');
   }
   const onModering = (id) =>{
-    /* axios.post(`https://64775eca9233e82dd53b8a86.mockapi.io/feedback/${id}`); */
-    /* props.setFeedback((feed)=>console.log('запись   ')); */
-    /* console.log('запись разрешена  '+ props.setFeedback((feed)=>feed.filter(item=>item.id !== id))); */
+    props.editPost(id);
   }
+
   return (
+
     <div className="d-flex flex-row">
       <div className="p-2 col-3 bg-primary">
         <h6 className="text-center">Блок с отзывами</h6>
@@ -69,6 +69,7 @@ const AdminForm = (props) => {
         </div>
       </div>
     </div>
+
   );
 }
 

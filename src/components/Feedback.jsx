@@ -21,6 +21,7 @@ const Feedback = (props) => {
     setValue('moderator', 'off');
     setValue('name', name);
     setValue('living_date', ((typeof dateVisit === 'undefined')||(dateVisit ===null)) ? today : (dateVisit.day+'/'+dateVisit.month+'/'+dateVisit.year));
+    setValue('myId',props.myId);
     let values = getValues();
     axios.post('https://64775eca9233e82dd53b8a86.mockapi.io/feedback', values);
     console.log('Values ',values);
