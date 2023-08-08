@@ -2,6 +2,7 @@ import React from 'react'
 import { AppContext } from '../App';
 import FeedbackCardAdmin from './admin/FeedbackCardAdmin';
 import axios from 'axios';
+import UserCardAdmin from './admin/UserCardAdmin';
 
 
 const AdminForm = (props) => {
@@ -10,6 +11,11 @@ const AdminForm = (props) => {
     axios.delete(`https://64775eca9233e82dd53b8a86.mockapi.io/feedback/${id}`);
     props.setFeedback((feed)=>feed.filter(item=>item.id !== id));
     console.log('запись удалена');
+  }
+  const onDeleteUser =(id) =>{
+    axios.delete(`http://localhost:3001/users/${id}`);
+    props.setUser((user)=>user.filter(item=>item.id !== id));
+    console.log('пользователь удален');
   }
   const onModering = (id) =>{
     props.editPost(id);
@@ -45,10 +51,23 @@ const AdminForm = (props) => {
 
       <div className="p-2 col-3 bg-danger">
         <h6 className="text-center">Блок с пользователями</h6>
-        <div className="d-flex flex-row">
-          <div className="p-2 col-5 bg-light"></div>
-          <div className="p-2 col-2 bg-danger"></div>
-          <div className="p-2 col-5 bg-light"></div>
+        <div className="d-flex flex-row justify-content-between">
+          <div className="p-2 col-12 bg-light">{props.user.map(obj=>{
+                                                  return(
+                                                    <UserCardAdmin
+                                                    id={obj.id}
+                                                    login={obj.login}
+                                                    name={obj.name}
+                                                    password={obj.password}
+                                                    phone={obj.phone}
+                                                    role={obj.role}
+                                                    onDeleteUser={(id)=>{onDeleteUser(id)}}
+                                                    />
+                                                  )
+                                                })
+                                               }
+
+          </div>
         </div>
       </div>
       <div className="p-2 col-3 bg-info">

@@ -103,10 +103,7 @@ const Feedback = (props) => {
                     <DtPicker placeholder='Дата проживания' className='calendar' onChange={setDateVisit} showWeekend />  
                   </div>
                 </div>
-
                   <input type="submit" className='btn btn-info' /* disabled={isReadOnly} *//>
-
-
           </form>
         </div>  
         <Modal show={showModal} onHide={handleClose}>

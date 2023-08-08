@@ -23,10 +23,13 @@ export const AppContext = React.createContext({});
 function App() {
   const [rooms, setRooms] = useState([])
   const [feedback, setFeedback] = useState([])
+  const [user, setUser] = useState([])
   useEffect (()=>{
     async function axiosData(){
-      const roomsData = await axios.get('https://64775eca9233e82dd53b8a86.mockapi.io/rooms')
-      const feedbackData = await axios.get('https://64775eca9233e82dd53b8a86.mockapi.io/feedback');
+      const roomsData = await axios.get('https://64775eca9233e82dd53b8a86.mockapi.io/rooms') //таблица с номерами
+      const feedbackData = await axios.get('https://64775eca9233e82dd53b8a86.mockapi.io/feedback'); // таблица с отзывами
+      const userData =  await axios.get('http://localhost:3001/users/'); //таблица с регистрированными пользователями
+      setUser(userData.data)
       setRooms(roomsData.data)
       setFeedback(feedbackData.data)
     }
@@ -55,7 +58,9 @@ function App() {
         setRooms,
         feedback,
         setFeedback,
-        editPost
+        editPost,
+        user,
+        setUser
       }
     }>
       <div>
@@ -63,7 +68,11 @@ function App() {
           <Header/>
             <Routes>
               <Route path='/' element={<Home item={rooms}/>}/>
-              <Route path='/form' element={<Form/>}/>
+              <Route path='/form' element={<Form
+                                                  user={user}
+                                                  setUser={setUser}
+                                            />
+                                          }/>
               <Route path='/about' element={<About/>}/>
               <Route path='/feedback' element={
                                                 <Feedback 
@@ -78,6 +87,8 @@ function App() {
               <Route path='/admin' element={<AdminForm
                                                   feedback={feedback}
                                                   setFeedback={setFeedback}
+                                                  user={user}
+                                                  setUser={setUser}
                                                   editPost={(id)=>{editPost(id)}}
                                                 />
                                               }/>

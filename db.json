@@ -1,0 +1,41 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "myId": 1,
+      "name": "Алексей",
+      "login": "admin",
+      "password": "admin",
+      "phone": "+79833113111",
+      "role": "admin"
+    },
+    {
+      "id": 2,
+      "myId": 2,
+      "name": "Иван",
+      "login": "user1",
+      "phone": "+79833113111",
+      "password": "user",
+      "role": "user"
+    },
+    {
+      "id": 4,
+      "myId": 4,
+      "name": "Николай",
+      "login": "user3",
+      "phone": "+79833113111",
+      "password": "user",
+      "role": "user"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

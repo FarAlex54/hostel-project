@@ -51,7 +51,7 @@ const FeedbackCardAdmin = (props) => {
               </div>
             </Card.Footer>
           </Card>
-  </div>
+    </div>
 
   )
 }
