@@ -17,13 +17,18 @@ import AdminForm from './components/AdminForm';
 
 
 
+
+
 export const AppContext = React.createContext({});
 
+const switchers = [...document.querySelectorAll('.switcher')]
+console.log('.switcher: '+switchers)
 
 function App() {
   const [rooms, setRooms] = useState([])
   const [feedback, setFeedback] = useState([])
   const [user, setUser] = useState([])
+  const [authenticated, setAuthenticated] = useState(false);
   useEffect (()=>{
     async function axiosData(){
       const roomsData = await axios.get('https://64775eca9233e82dd53b8a86.mockapi.io/rooms') //таблица с номерами
@@ -40,15 +45,22 @@ function App() {
   feedback.map((item) => {if (item.id>myId) {myId=item.id}});
 
   const editPost=(id)=>{
-    axios.delete(`https://64775eca9233e82dd53b8a86.mockapi.io/feedback/${id}`);
+   /*  axios.delete(`https://64775eca9233e82dd53b8a86.mockapi.io/feedback/${id}`); */
     
     /* setFeedback((feed)=>feed.filter(item=>item.id !== id)); */
     
     feedback.map((item) => {if (item.id===id) {
       item.moderator='on';
-      axios.post('https://64775eca9233e82dd53b8a86.mockapi.io/feedback', item);
+      axios.put(`https://64775eca9233e82dd53b8a86.mockapi.io/feedback/${item.id}`, item);
       }})
     setFeedback(feedback); 
+  }
+  const ChangeRole=(id)=>{
+    user.map((item) => {if (item.id===id) {
+      if (item.role==='admin') {item.role = 'user'}else{item.role = 'admin'}
+      axios.put(`http://localhost:3001/users/${item.id}`, item);
+      }})
+    console.log('изменена роль пользователя');
   }
 
   return (
@@ -60,19 +72,18 @@ function App() {
         setFeedback,
         editPost,
         user,
-        setUser
+        setUser,
+        ChangeRole,
+        authenticated,
+        setAuthenticated
       }
     }>
       <div>
         <Router>
           <Header/>
             <Routes>
-              <Route path='/' element={<Home item={rooms}/>}/>
-              <Route path='/form' element={<Form
-                                                  user={user}
-                                                  setUser={setUser}
-                                            />
-                                          }/>
+              <Route path='/' element={<Home/>}/>
+              <Route path='/form' element={<Form/>}/>
               <Route path='/about' element={<About/>}/>
               <Route path='/feedback' element={
                                                 <Feedback 
@@ -90,8 +101,10 @@ function App() {
                                                   user={user}
                                                   setUser={setUser}
                                                   editPost={(id)=>{editPost(id)}}
+                                                  ChangeRole={(id)=>{ChangeRole(id)}}
                                                 />
                                               }/>
+
             </Routes>
           <Footer/>
         </Router>

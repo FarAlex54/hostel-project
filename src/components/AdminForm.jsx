@@ -3,7 +3,7 @@ import { AppContext } from '../App';
 import FeedbackCardAdmin from './admin/FeedbackCardAdmin';
 import axios from 'axios';
 import UserCardAdmin from './admin/UserCardAdmin';
-
+import Card from 'react-bootstrap/Card';
 
 const AdminForm = (props) => {
 
@@ -17,6 +17,12 @@ const AdminForm = (props) => {
     props.setUser((user)=>user.filter(item=>item.id !== id));
     console.log('пользователь удален');
   }
+  const onChangeRole =(id) =>{
+    console.log(id);
+    props.ChangeRole(id);
+
+  }
+
   const onModering = (id) =>{
     props.editPost(id);
   }
@@ -24,10 +30,9 @@ const AdminForm = (props) => {
   return (
 
     <div className="d-flex flex-row">
-      <div className="p-2 col-3 bg-primary">
-        <h6 className="text-center">Блок с отзывами</h6>
-        <div className="d-flex flex-row justify-content-between">
-          <div className="p-2 col-12 bg-light">{props.feedback.map(obj=>{
+      <div className="p-1 col-3 bg-primary"><h6 className="text-center">Блок с отзывами</h6>
+
+                                      {props.feedback.map(obj=>{
                                                   return(
                                               <FeedbackCardAdmin
                                               key={obj.id}
@@ -45,14 +50,24 @@ const AdminForm = (props) => {
                                               />
                                                   )
                                               })}
-          </div>
-        </div>
       </div>  
 
-      <div className="p-2 col-3 bg-danger">
-        <h6 className="text-center">Блок с пользователями</h6>
-        <div className="d-flex flex-row justify-content-between">
-          <div className="p-2 col-12 bg-light">{props.user.map(obj=>{
+      <div className="p-1 col-3 bg-danger"><h6 className="text-center">Блок с пользователями</h6>
+            <Card>
+              <Card.Body>
+
+                <p className="small">
+                <p className="small">
+                <div className="d-flex flex-row align-items-center fw-bold">
+                  <div className="col-1">Id</div>
+                  <div className="col-3">Имя</div>
+                  <div className="col-2">Login</div>
+                  <div className="col-3">Телефон</div>
+                  <div className="col-1">роль</div>
+                  <div className="col-1"></div>
+                  <div className="col-1"></div>
+                </div>
+                                              {props.user.map(obj=>{
                                                   return(
                                                     <UserCardAdmin
                                                     id={obj.id}
@@ -62,16 +77,17 @@ const AdminForm = (props) => {
                                                     phone={obj.phone}
                                                     role={obj.role}
                                                     onDeleteUser={(id)=>{onDeleteUser(id)}}
+                                                    onChangeRole={(id)=>{onChangeRole(id)}}
                                                     />
                                                   )
                                                 })
                                                }
-
-          </div>
-        </div>
+                </p>
+                </p>
+              </Card.Body>
+            </Card>
       </div>
-      <div className="p-2 col-3 bg-info">
-        <h6 className="text-center">Блок с номерами</h6>
+      <div className="p-2 col-3 bg-info"><h6 className="text-center">Блок с номерами</h6>
         <p className="text-center  small">Описание, фотографии общая инфа</p>
         <div className="d-flex flex-row">
           <div className="p-2 col-5 bg-light"></div>
@@ -79,8 +95,7 @@ const AdminForm = (props) => {
           <div className="p-2 col-5 bg-light"></div>
         </div>
       </div>
-      <div className="p-2 col-3 bg-danger">
-        <h6 className="text-center">Блок с номерами</h6>
+      <div className="p-2 col-3 bg-danger"><h6 className="text-center">Блок с контентом</h6>
         <div className="d-flex flex-row">
           <div className="p-2 col-5 bg-light"></div>
           <div className="p-2 col-2 bg-danger"></div>

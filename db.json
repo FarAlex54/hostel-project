@@ -10,15 +10,6 @@
       "role": "admin"
     },
     {
-      "id": 2,
-      "myId": 2,
-      "name": "Иван",
-      "login": "user1",
-      "phone": "+79833113111",
-      "password": "user",
-      "role": "user"
-    },
-    {
       "id": 4,
       "myId": 4,
       "name": "Николай",
@@ -26,6 +17,30 @@
       "phone": "+79833113111",
       "password": "user",
       "role": "user"
+    },
+    {
+      "name": "Сергей Витальевич",
+      "login": "Serg",
+      "phone": "+7(983) 311-31-11",
+      "password": "1",
+      "role": "user",
+      "id": 5
+    },
+    {
+      "name": "Виталий Сергеевич",
+      "login": "Vital",
+      "phone": "+7(983) 311-31-11",
+      "password": "1",
+      "role": "user",
+      "id": 6
+    },
+    {
+      "name": "Алексей",
+      "login": "user4",
+      "phone": "+7(983) 311-31-11",
+      "password": "1",
+      "role": "user",
+      "id": 7
     }
   ],
   "comments": [

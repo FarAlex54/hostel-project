@@ -1,36 +1,28 @@
 import React from 'react'
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/esm/Button';
+import { useState } from 'react';
 
 const UserCardAdmin = (props) => {
+  const [role, setRole] = useState(props.role);
   const onDelete=()=>{props.onDeleteUser(props.id);}
+  const onChange=()=>{
+    props.onChangeRole(props.id);
+    if (role==='user') {setRole('admin')}else{setRole('user')}
+  }
+
+
   return (
-    <div class="py-2">
+      <p className="small">
+        <div className="d-flex flex-row align-items-center">
+          <div className="col-1">{props.id}</div>
+          <div className="col-3">{props.name}</div>
+          <div className="col-2">{props.login}</div>
+          <div className="col-3">{props.phone}</div>
+          <div className="col-1">{role}</div>
+          <div className="col-1"><i className="bi bi-plus-circle-fill feedbackIcon_plus btn" onClick={onChange}></i></div>
+          <div className="col-1"><i className="bi bi-dash-circle-fill feedbackIcon_minus btn" onClick={onDelete}></i></div>
+        </div>
+      </p>
 
-
-    <Card>
-      <Card.Body>
-      <p class="fs-5 px-3">{props.name}</p>
-      <p className="small"><i class="bi bi-plus-circle-fill feedbackIcon_plus"></i> {props.login}</p> 
-      <p className="small"><i class="bi bi-dash-circle-fill feedbackIcon_minus"></i> {props.password}</p>
-      <p className="small"><i class="bi bi-dash-circle-fill feedbackIcon_minus"></i> {props.phone}</p>
-      </Card.Body>
-      <Card.Footer>
-        <div className="d-flex flex-row justify-content-between align-items-center">
-        </div>  
-          <div className='p-1 col-4'>
-            <div className="d-flex flex-row justify-content-between align-items-center">
-                <div className='p-1'>
-                  <Button variant="outline-success" size="sm">Сменить роль</Button>
-                </div>
-                <div className='p-1' >
-                  <Button variant="outline-danger" size="sm" onClick={onDelete}>Удалить</Button>
-                </div>
-            </div>
-          </div>
-      </Card.Footer>
-    </Card>
-</div>
   )
 }
 

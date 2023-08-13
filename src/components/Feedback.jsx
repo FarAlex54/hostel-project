@@ -1,7 +1,7 @@
 import React from 'react'
 import './styles/Feedback.css';
 import DtPicker from 'react-calendar-datetime-picker'
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import axios from 'axios';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
@@ -11,7 +11,7 @@ import { useForm } from 'react-hook-form'
 
 const Feedback = (props) => {
 
-  const FeedbackContext = React.createContext(AppContext);
+  const feedbackContext = useContext(AppContext);
 
   let name = 'Вася';
   const {register,handleSubmit, watch, formState:{errors}, getValues, setValue, reset}=useForm();
@@ -44,7 +44,15 @@ const Feedback = (props) => {
 
       <div className="d-flex flex-row">
         <div className="p-2 col-1"></div>  
-        <div className="p-2 col-7">{props.feedback.map(obj=>{
+        <div className="p-2 col-7">
+          
+          
+          
+          
+          
+          
+          
+          {props.feedback.map(obj=>{
                                                   return(
                                               <FeedbackCard
                                               key={obj.id}
