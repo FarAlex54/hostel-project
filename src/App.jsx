@@ -29,6 +29,9 @@ function App() {
   const [feedback, setFeedback] = useState([])
   const [user, setUser] = useState([])
   const [authenticated, setAuthenticated] = useState(false);
+  const [pathPage, setPathPage] = useState('/form');
+  let LoginRegisteredUser = null;
+
   useEffect (()=>{
     async function axiosData(){
       const roomsData = await axios.get('https://64775eca9233e82dd53b8a86.mockapi.io/rooms') //таблица с номерами
@@ -45,10 +48,6 @@ function App() {
   feedback.map((item) => {if (item.id>myId) {myId=item.id}});
 
   const editPost=(id)=>{
-   /*  axios.delete(`https://64775eca9233e82dd53b8a86.mockapi.io/feedback/${id}`); */
-    
-    /* setFeedback((feed)=>feed.filter(item=>item.id !== id)); */
-    
     feedback.map((item) => {if (item.id===id) {
       item.moderator='on';
       axios.put(`https://64775eca9233e82dd53b8a86.mockapi.io/feedback/${item.id}`, item);
@@ -75,7 +74,10 @@ function App() {
         setUser,
         ChangeRole,
         authenticated,
-        setAuthenticated
+        setAuthenticated,
+        pathPage,
+        setPathPage,
+        LoginRegisteredUser
       }
     }>
       <div>

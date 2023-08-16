@@ -35,12 +35,44 @@
       "id": 6
     },
     {
-      "name": "Алексей",
+      "name": "Молоко",
       "login": "user4",
       "phone": "+7(983) 311-31-11",
       "password": "1",
       "role": "user",
       "id": 7
+    },
+    {
+      "name": "Антон Сергеевич",
+      "login": "Anton",
+      "phone": "+7(983) 311-31-11",
+      "password": "1",
+      "role": "user",
+      "id": 8
+    },
+    {
+      "name": "Владимир Николаевич",
+      "login": "vlad",
+      "phone": "+7(983) 311-31-11",
+      "password": "1",
+      "role": "user",
+      "id": 9
+    },
+    {
+      "name": "Молоко",
+      "login": "sadfasdf",
+      "phone": "+7(983) 311-31-11",
+      "password": "1",
+      "role": "user",
+      "id": 10
+    },
+    {
+      "name": "Сметана",
+      "login": "Brother",
+      "phone": "+7(983) 311-31-11",
+      "password": "1",
+      "role": "admin",
+      "id": 11
     }
   ],
   "comments": [

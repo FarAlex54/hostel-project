@@ -1,11 +1,15 @@
 import React from 'react'
 import { AppContext } from '../App';
+import { useContext } from 'react';
 import FeedbackCardAdmin from './admin/FeedbackCardAdmin';
 import axios from 'axios';
 import UserCardAdmin from './admin/UserCardAdmin';
 import Card from 'react-bootstrap/Card';
+import {useNavigate} from 'react-router-dom';
 
 const AdminForm = (props) => {
+  const navigate = useNavigate(); 
+  const adminContext = useContext(AppContext);
 
   const onDeletePost = (id)=>{
     axios.delete(`https://64775eca9233e82dd53b8a86.mockapi.io/feedback/${id}`);
@@ -26,12 +30,12 @@ const AdminForm = (props) => {
   const onModering = (id) =>{
     props.editPost(id);
   }
-
+  if (adminContext.authenticated) { 
   return (
-
+    
     <div className="d-flex flex-row">
-      <div className="p-1 col-3 bg-primary"><h6 className="text-center">Блок с отзывами</h6>
-
+      <div className="p-1 col-3"><h6 className="text-center">Блок с отзывами</h6>
+          <p className="small">
                                       {props.feedback.map(obj=>{
                                                   return(
                                               <FeedbackCardAdmin
@@ -50,9 +54,10 @@ const AdminForm = (props) => {
                                               />
                                                   )
                                               })}
+          </p>
       </div>  
 
-      <div className="p-1 col-3 bg-danger"><h6 className="text-center">Блок с пользователями</h6>
+      <div className="p-1 col-3"><h6 className="text-center">Блок с пользователями</h6>
             <Card>
               <Card.Body>
 
@@ -104,7 +109,8 @@ const AdminForm = (props) => {
       </div>
     </div>
 
-  );
+  )}
+  else {navigate("/")}
 }
 
 export default AdminForm

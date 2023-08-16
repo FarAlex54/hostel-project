@@ -1,6 +1,6 @@
 import React from 'react'
 import Button from 'react-bootstrap/Button';
-import DtPicker from 'react-calendar-datetime-picker'
+import DtPicker, { Day } from 'react-calendar-datetime-picker'
 import 'react-calendar-datetime-picker/dist/index.css'
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
@@ -18,68 +18,53 @@ const minDate = {
   day: dateNow.getDate()
 };
 
-
-/*   const [change,setChange] = useState(true); */
-
-
 const Bron = () => {
-  const [dateIn,setDateIn] = useState(null);
-  const [dateOut,setDateOut] = useState(null);
-  const [text, setText] = useState('');
-  let [proper, setProper] = useState(true);
+  const [dateIn,setDateIn] = useState({});
+  const [dateOut,setDateOut] = useState({});
+  const [dateOutCalendar, setDateOutCalendar] = useState(true);
 
-  function handleChange(e) {
-      console.log('setProper = '+proper);
-      return false;
-  }
-  
-  function togleOn(e){  
-    if (!e) {console.log('Not null = '+e);return true;}else{console.log(e);return false;}
-    console.log('togleOn(e) = '+dateIn);
-  }
-  
+
   return (
-    
-    <div class="d-flex">
-      <div class='col-2'></div>
-      <div class="col-8 d-flex justify-content-center align-items-center bd-highlight p-3 mb-5 bg-light rounded shadow">
-        <div class="p-2 h2 bd-highlight">Бронирование номеров</div>
-        <div class="p-2 bd-highlight"></div>
-        <div class="p-2 bd-highlight">
-          <DtPicker placeholder='Дата заезда' className='calendar' onChange={setDateIn} minDate={minDate} showWeekend/>
+    <div className="d-flex justify-content-center">
+      <div className="col-8 d-flex justify-content-center align-items-center bd-highlight p-3 mb-5 bg-light rounded shadow">
+        <div className="p-2 h2 bd-highlight">Бронирование номеров</div>
+        <div className="p-2 bd-highlight">
+          <DtPicker type="single" placeholder='Дата заезда' className='calendar' onChange={(dateIn)=>{setDateIn(dateIn);/* setDateOutCalendar(false); */console.log('dateIn: '+dateIn);console.log('dateOutCalendar: '+dateOutCalendar);}} minDate={minDate} showWeekend/>
         </div>
-        <div class="p-2 bd-highlight">
-          <DtPicker placeholder='Дата выезда' className='calendar' onChange={setDateOut} minDate={dateIn} showWeekend isDisabled={true}/>
+        <div className="p-2 bd-highlight">
+          <DtPicker type="single" placeholder='Дата выезда' className='calendar' onChange={(dateOut)=>{setDateOut(dateOut);console.log('dateOut: '+dateOut)}} minDate={dateIn} showWeekend isDisabled={dateOutCalendar}/>
         </div>
-        <div class="p-2 bd-highlight">
-          <DropdownButton className="d-grid" id="dropdown-item-button" title="Гостей" variant="outline-success" size='sm'>
-
-            <Dropdown.Header><div class="text-center">Количество гостей</div></Dropdown.Header><Dropdown.Divider />
-            <Dropdown.ItemText>
-              <div class="text-center">
-                <div>
-                  <label class="form-label" for="typeNumberOld"><p class='small'>Взрослые</p></label>
-                  <input step="1" value="1" type="number" id="typeNumberOld" class="form-control" />
+        <div className="p-2 bd-highlight">
+          <Dropdown autoClose="outside">
+            <Dropdown.Toggle variant="outline-success" title="Гостей">
+              Гостей
+            </Dropdown.Toggle>
+            <Dropdown.Divider />
+            <Dropdown.Menu className='dropdown-menu'>
+              <p className='text-center small'>Количество гостей
+                <div className="d-flex justify-content-around">
+                  <div className="col-5">
+                    <p className='text-center small'>Взрослые</p>
+                    <label htmlFor='older'></label>
+                    <input type='number' id='older' style={{width:100}}></input>
+                  </div>
+                  <div className="col-5">
+                    <p className='text-center small'>Дети</p>
+                    <label htmlFor='younger'></label>
+                    <input type='number' id='younger' style={{width:100}}></input>
+                  </div>
                 </div>
-                
-                <div>
-                    <label class="form-label" for="typeNumberYang"><p class='small'>Дети младше 18 лет</p></label>
-                    <input step="1" value="0" type="number" id="typeNumberYang" class="form-control" />  
-                </div>
-              </div>
-
+              </p>
+              <div className="d-flex justify-content-end px-2">
                 <Button variant="primary" size='sm'>Готово</Button>
-
-            </Dropdown.ItemText>
-
-          </DropdownButton>   
+              </div>
+            </Dropdown.Menu>
+          </Dropdown> 
         </div>
-        <div class="p-2 bd-highlight">
+        <div className="p-2 bd-highlight">
           <Button variant="success" size='lg'>Поиск</Button>
         </div>
       </div>
-      <div class='col-2'></div>
-
     </div> 
 
 

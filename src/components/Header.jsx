@@ -3,16 +3,18 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from "react-bootstrap/Button";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import {Link} from 'react-router-dom';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import '../App.css';
+import { AppContext } from '../App';
+
 
 const Header = () => { 
 
+  const headerContext = useContext(AppContext);
   const locale = 'en';
   const [today, setDate] = useState(new Date());
-
   useEffect(() => {
       const timer = setInterval(() => { 
       setDate(new Date());
@@ -38,16 +40,21 @@ const Header = () => {
             <Nav.Link><Link className='aLink' exact to={'/feedback'}>Отзывы</Link></Nav.Link>
           </Nav>
           <Nav class='small text-light text-end justify-content-end'>
-            <Nav.Link href="#position">Краснодарский край, село Бжид, ул.Лазурная, 10</Nav.Link>
+            <Nav.Link><Link className='aLink' to={'/'}>Краснодарский край, село Бжид, ул.Лазурная, 10</Link></Nav.Link>
           </Nav>
           <Nav class='small text-light text-end justify-content-end p-4'>
-          <Nav.Link>
-            <Link className='aLink' exact to={'/form'}>
-              <Button className='cardButton' variant="primary" data-bs-toggle="tooltip" data-bs-placement="right" title="Личный кабинет">
-                <i class="bi bi-person-fill"></i>
-              </Button>
-            </Link>
+            <Nav.Link>
+              <Link className='aLink' exact to={headerContext.pathPage}>
+                          <Button className='cardButton' variant="primary" data-bs-toggle="tooltip" data-bs-placement="right" title={!headerContext.authenticated ?  ('Войти в личный кабинет') : ('Выйти из личного кабинета')} onClick={()=>{
+                                                      if(headerContext.authenticated) {headerContext.setAuthenticated(false);}
+                                                      headerContext.setPathPage('/form');}}>
+                            {!headerContext.authenticated ?  (<i class="bi bi-person-fill"></i>) : (<i class="bi bi-telephone-x"></i>)}
+                          </Button>
+              </Link>
             </Nav.Link>
+          </Nav>   
+          <Nav class='small text-light text-end justify-content-end'>
+
           </Nav>   
         </Navbar.Collapse>
       </Container>

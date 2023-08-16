@@ -30,24 +30,28 @@ const Form = () => {
                 console.log('Такого Logina нет в базе: '+ values.login);
                 formContext.setUser([...formContext.user, values]);
                 formContext.setAuthenticated(true);
+                formContext.LoginRegisteredUser=values.login;
                 axios.post('http://localhost:3001/users/', values);
-
               }
               else{
                 console.log('Такой Login есть в базе: '+values.login); 
-                formContext.setAuthenticated(false);           
+                formContext.setAuthenticated(false);            
               }
     console.log('setAuthenticated: '+formContext.authenticated);  
+    console.log('LoginRegisteredUser: '+formContext.LoginRegisteredUser); 
     reset();
-  /*   navigate("/"); */
+    navigate("/");
   }
   const onSubmitLogin = (data) => {
     formContext.user.map((userLogin) => {if (userLogin.login===data.login && userLogin.password===data.password) {
                                                                             formContext.setAuthenticated(true);
+                                                                            formContext.setPathPage('/');
+                                                                            formContext.LoginRegisteredUser=userLogin.login;
                                                                             if (userLogin.role==='admin'){navigate("/admin")}
                                                                                                      else{navigate("/")}
                                                                            }                               
                                         });
+    console.log('LoginRegisteredUser: '+formContext.LoginRegisteredUser);                                 
     resetLogin();
   }
   return (
