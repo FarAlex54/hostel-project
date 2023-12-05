@@ -25,9 +25,86 @@ const switchers = [...document.querySelectorAll('.switcher')]
 console.log('.switcher: '+switchers)
 
 function App() {
-  const [rooms, setRooms] = useState([])
+  const [rooms, setRooms] = useState([
+
+  ])
   const [feedback, setFeedback] = useState([])
-  const [user, setUser] = useState([])
+  const [user, setUser] = useState([
+    {
+      "id": 1,
+      "myId": 1,
+      "name": "Алексей",
+      "login": "admin",
+      "password": "admin",
+      "phone": "+79833113111",
+      "role": "admin"
+    },
+    {
+      "id": 4,
+      "myId": 4,
+      "name": "Николай",
+      "login": "user3",
+      "phone": "+79833113111",
+      "password": "user",
+      "role": "user"
+    },
+    {
+      "name": "Сергей Витальевич",
+      "login": "Serg",
+      "phone": "+7(983) 311-31-11",
+      "password": "1",
+      "role": "user",
+      "id": 5
+    },
+    {
+      "name": "Виталий Сергеевич",
+      "login": "Vital",
+      "phone": "+7(983) 311-31-11",
+      "password": "1",
+      "role": "user",
+      "id": 6
+    },
+    {
+      "name": "Молоко",
+      "login": "user4",
+      "phone": "+7(983) 311-31-11",
+      "password": "1",
+      "role": "user",
+      "id": 7
+    },
+    {
+      "name": "Антон Сергеевич",
+      "login": "Anton",
+      "phone": "+7(983) 311-31-11",
+      "password": "1",
+      "role": "user",
+      "id": 8
+    },
+    {
+      "name": "Владимир Николаевич",
+      "login": "vlad",
+      "phone": "+7(983) 311-31-11",
+      "password": "1",
+      "role": "user",
+      "id": 9
+    },
+    {
+      "name": "Молоко",
+      "login": "sadfasdf",
+      "phone": "+7(983) 311-31-11",
+      "password": "1",
+      "role": "user",
+      "id": 10
+    },
+    {
+      "name": "Сметана",
+      "login": "Brother",
+      "phone": "+7(983) 311-31-11",
+      "password": "1",
+      "role": "admin",
+      "id": 11
+    }
+  ])
   const [authenticated, setAuthenticated] = useState(false);
   const [pathPage, setPathPage] = useState('/form');
   let LoginRegisteredUser = null;
@@ -36,8 +113,8 @@ function App() {
     async function axiosData(){
       const roomsData = await axios.get('https://64775eca9233e82dd53b8a86.mockapi.io/rooms') //таблица с номерами
       const feedbackData = await axios.get('https://64775eca9233e82dd53b8a86.mockapi.io/feedback'); // таблица с отзывами
-      const userData =  await axios.get('http://localhost:3001/users/'); //таблица с регистрированными пользователями
-      setUser(userData.data)
+      /* const userData =  await axios.get('http://localhost:3001/users/'); */ //таблица с регистрированными пользователями
+      /* setUser(userData.data) */
       setRooms(roomsData.data)
       setFeedback(feedbackData.data)
     }
@@ -57,7 +134,7 @@ function App() {
   const ChangeRole=(id)=>{
     user.map((item) => {if (item.id===id) {
       if (item.role==='admin') {item.role = 'user'}else{item.role = 'admin'}
-      axios.put(`http://localhost:3001/users/${item.id}`, item);
+      /* axios.put(`http://localhost:3001/users/${item.id}`, item); */
       }})
     console.log('изменена роль пользователя');
   }
